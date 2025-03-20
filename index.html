@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AI Medical Diagnosis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('preview');
+                output.src = reader.result;
+                output.style.display = "block";
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Medical AI Diagnosis</a>
+        </div>
+    </nav>
+
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Upload Medical Image for Diagnosis</h1>
+
+        <div class="card p-4 shadow-sm">
+            <form action="/predict" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" class="form-control mb-3" required onchange="previewImage(event)">
+                <img id="preview" src="#" alt="Image Preview" class="img-fluid mt-3" style="display: none; max-width: 300px;">
+                <br>
+                <button type="submit" class="btn btn-primary mt-3">Predict</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
